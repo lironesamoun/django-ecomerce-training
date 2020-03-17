@@ -1,18 +1,27 @@
 from django.shortcuts import render
 from .models import *
+from django.views.generic import ListView, DetailView
 # Create your views here.
 
 
-def home(request):
-    return render(request, "core/home-page.html")
+class HomeView(ListView):
+    model = Item
+    template_name = 'core/home-page.html'
+
+
+class ItemDetailView(DetailView):
+    model = Item
+    template_name = 'core/product-page.html'
+
+    def get_object(self):
+        # Nous récupérons l'objet, via la super-classe
+        article = super(ItemDetailView, self).get_object()
+
+        return article  # Et nous retournons l'objet à afficher
 
 
 def checkout(request):
     return render(request, "core/checkout-page.html")
-
-
-def product(request):
-    return render(request, "core/product-page.html")
 
 
 def item_list(request):
