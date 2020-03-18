@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'core',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -52,7 +53,7 @@ TEMPLATES = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-FR'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
@@ -95,3 +96,5 @@ AUTHENTICATION_BACKENDS = (
 )
 
 SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'
