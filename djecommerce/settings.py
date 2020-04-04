@@ -1,4 +1,5 @@
 import os
+from decouple import config
 
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
 
@@ -24,6 +25,7 @@ INSTALLED_APPS = [
     'core',
     'crispy_forms',
     'django_countries',
+    'stripe',
 ]
 
 MIDDLEWARE = [
@@ -99,3 +101,10 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
+
+# API KEY
+# Here the config() function will search for a .env file in the project root, if there is no .env file it will fallback to the OS environment
+# variables, if there is no environment variable, it will fallback to the default value in the config() function.
+#  In this case the default value is just an empty string to avoid the application breaking in case you have no API key
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY', default='')
+STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY', default='')

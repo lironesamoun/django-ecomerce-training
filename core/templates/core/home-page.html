@@ -65,9 +65,10 @@
           <div class="card">
 
             <!--Card image-->
-            <div class="view overlay"> 
-              <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
-                alt="">
+            <div class="view overlay">
+              <!--<img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
+                alt=""> -->
+              <img src="{{ item.image.url }}" class="card-img-top" alt="">
               <a href="{{ item.get_absolute_url }}">
                 <div class="mask rgba-white-slight"></div>
               </a>
@@ -95,7 +96,7 @@
                   {% else %}
                   {{ item.price }}
                   {% endif %}
-                  </strong>
+                </strong>
               </h4>
 
             </div>
@@ -130,24 +131,24 @@
         </li>
         {% endif %}
 
- 
-    
-    {% for num in page_obj.paginator.page_range %}
-    
-    {% if page_obj.number == num %}
-    <li class="page-item active">
-    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-     <li class="page-item">
-    <a class="page-link" href="?page={{ num }}">{{ num }}
-    <span class="sr-only">(current)</span>
-    </a>
-    {% endif %}
-     </li>
-    {% endfor %}
-   
 
-      
+
+        {% for num in page_obj.paginator.page_range %}
+
+        {% if page_obj.number == num %}
+        <li class="page-item active">
+          <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ num }}">{{ num }}
+            <span class="sr-only">(current)</span>
+          </a>
+          {% endif %}
+        </li>
+        {% endfor %}
+
+
+
         {% if page_obj.has_next %}
         <li class="page-item">
           <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
